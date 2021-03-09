@@ -290,3 +290,298 @@
 		}
 	]
 }
+
+{
+	"app_name": "Box",
+	"platform": "web",
+	"tests": [{
+			"testrail_id": "123456", 		//Testrail Id
+			"test_name": "Upload-DLP Block with small file (PCI, FileSize, Docx FileType, Instance included in policy, from user)", //Test case name provided in the testrail
+			"tags": ["smoke","regression"],	//Tags assigned to the test case
+			"test_method": {				//Contains details about test method - name and arguments to be passed to the test
+				"name": "upload_file_from_all_files",
+				"args": [{
+					"file_type":"Small_200KB.Docx"}]
+			},
+			"object_type": "File",			//Object under test
+			"uj_options": "OK",				//User action to be performed on client popup
+			"assert_result":false,			//To handle the negative test cases scenarios - for Block cases mostly it will be false. For negative cases it will be come true
+			"policy_data": {				//This is the policy configuration details - easy way to add this Create policy manually from web-ui and copy from network traffic. :)
+				"app_or_category": "app_instance",
+				"apps": [],
+				"app_instance": ["Box: netskopedemodeepak", "Box: testnamma"],
+				"dlp_profile": ["DLP-PCI"],
+				"tss_profile": [],
+				"activities": [{
+					"activity": "Upload",
+					"list_of_constraints": [{
+						"constraints_type": "from_user",
+						"constraints_profile": "2"
+					}]
+				}],
+				"access_method": [],
+				"file_types": ["Documents","Presentations"],
+				"file_size": {
+					"operator": "gt",
+					"size": "128",
+					"unit": "KB"
+				},
+				"action": {
+					"action_name": "block",
+					"template": "block_page.html"
+				}
+			}
+		},
+		{
+			"testrail_id": "123456",
+			"test_name": "Download-DLP Block with medium file (PII, FileSize, PDF FileType, Instance included in policy, from user)", 
+			"tags": ["smoke","regression"],
+			"test_method": {
+				"name": "download_file_from_all_files",
+				"args": [{
+					"file_type":"Medium_8MB.pdf"}]
+			},
+			"object_type": "File",
+			"uj_options": "OK",
+			"assert_result":false,
+			"policy_data": {
+				"app_or_category": "app_instance",
+				"apps": [],
+				"app_instance": ["Box: netskopedemodeepak", "Box: testnamma"],
+				"dlp_profile": ["DLP-PII"],
+				"tss_profile": [],
+				"activities": [{
+					"activity": "Download",
+					"list_of_constraints": [{
+						"constraints_type": "from_user",
+						"constraints_profile": "2"
+					}]
+				}],
+				"access_method": [],
+				"file_types": ["Documents","Presentations"],
+				"file_size": {
+					"operator": "lt",
+					"size": "16",
+					"unit": "MB"
+				},
+				"action": {
+					"action_name": "block",
+					"template": "block_page.html"
+				}
+			}
+		},
+		{
+			"testrail_id": "123456",
+			"test_name": "Post - DLP Block (PCI, Instance,  from user, to user)",
+			"tags": ["regression"],
+			"test_method": {
+				"name": "post_comment_in_file",
+				"args": [{
+					"msg": "DLP_PCI_Text"
+				}]
+			},
+			"object_type": "Message",
+			"uj_options": "OK",
+			"assert_result":false,
+			"policy_data": {
+				"app_or_category": "app_instance",
+				"apps": [],
+				"app_instance": ["Box: netskopedemodeepak", "Box: testnamma"],
+				"dlp_profile": ["DLP-PCI"],
+				"tss_profile": [],
+				"activities": [{
+					"activity": "Create",
+					"list_of_constraints": [{
+						"constraints_type": "to_user",
+						"constraints_profile": "4"
+					}, {
+						"constraints_type": "from_user",
+						"constraints_profile": "2"
+					}]
+				}],
+				"access_method": [],
+				"file_types": [],
+				"file_size": null,
+				"action": {
+					"action_name": "block",
+					"template": "block_page.html"
+				}
+			}
+		},
+		{
+			"testrail_id": "123456",
+			"test_name": "Login- Non-SSO Block (Instance, From user)", 
+			"tags": ["smoke"],
+			"test_method": {
+				"name": "successful_login",
+				"args": []
+			},
+			"object_type": "User",
+			"uj_options": "OK",
+			"assert_result":false,
+			"policy_data": {
+				"app_or_category": "app_instance",
+				"apps": [],
+				"app_instance": ["Box: netskopedemodeepak"],
+				"dlp_profile": [],
+				"tss_profile": [],
+				"activities": ["Login Successful"],
+				"access_method": ["Client"],
+				"file_types": [],
+				"file_size": null,
+				"action": {
+					"action_name": "block",
+					"template": "block_page.html"
+				}
+			}
+		}
+	]
+}
+{
+	"app_name": "Box",
+	"platform": "web",
+	"tests": [{
+			"testrail_id": "123456", 		//Testrail Id
+			"test_name": "Upload-DLP Block with small file (PCI, FileSize, Docx FileType, Instance included in policy, from user)", //Test case name provided in the testrail
+			"tags": ["smoke","regression"],	//Tags assigned to the test case
+			"test_method": {				//Contains details about test method - name and arguments to be passed to the test
+				"name": "upload_file_from_all_files",
+				"args": [{
+					"file_type":"Small_200KB.Docx"}]
+			},
+			"object_type": "File",			//Object under test
+			"uj_options": "OK",				//User action to be performed on client popup
+			"assert_result":false,			//To handle the negative test cases scenarios - for Block cases mostly it will be false. For negative cases it will be come true
+			"policy_data": {				//This is the policy configuration details - easy way to add this Create policy manually from web-ui and copy from network traffic. :)
+				"app_or_category": "app_instance",
+				"apps": [],
+				"app_instance": ["Box: netskopedemodeepak", "Box: testnamma"],
+				"dlp_profile": ["DLP-PCI"],
+				"tss_profile": [],
+				"activities": [{
+					"activity": "Upload",
+					"list_of_constraints": [{
+						"constraints_type": "from_user",
+						"constraints_profile": "2"
+					}]
+				}],
+				"access_method": [],
+				"file_types": ["Documents","Presentations"],
+				"file_size": {
+					"operator": "gt",
+					"size": "128",
+					"unit": "KB"
+				},
+				"action": {
+					"action_name": "block",
+					"template": "block_page.html"
+				}
+			}
+		},
+		{
+			"testrail_id": "123456",
+			"test_name": "Download-DLP Block with medium file (PII, FileSize, PDF FileType, Instance included in policy, from user)", 
+			"tags": ["smoke","regression"],
+			"test_method": {
+				"name": "download_file_from_all_files",
+				"args": [{
+					"file_type":"Medium_8MB.pdf"}]
+			},
+			"object_type": "File",
+			"uj_options": "OK",
+			"assert_result":false,
+			"policy_data": {
+				"app_or_category": "app_instance",
+				"apps": [],
+				"app_instance": ["Box: netskopedemodeepak", "Box: testnamma"],
+				"dlp_profile": ["DLP-PII"],
+				"tss_profile": [],
+				"activities": [{
+					"activity": "Download",
+					"list_of_constraints": [{
+						"constraints_type": "from_user",
+						"constraints_profile": "2"
+					}]
+				}],
+				"access_method": [],
+				"file_types": ["Documents","Presentations"],
+				"file_size": {
+					"operator": "lt",
+					"size": "16",
+					"unit": "MB"
+				},
+				"action": {
+					"action_name": "block",
+					"template": "block_page.html"
+				}
+			}
+		},
+		{
+			"testrail_id": "123456",
+			"test_name": "Post - DLP Block (PCI, Instance,  from user, to user)",
+			"tags": ["regression"],
+			"test_method": {
+				"name": "post_comment_in_file",
+				"args": [{
+					"msg": "DLP_PCI_Text"
+				}]
+			},
+			"object_type": "Message",
+			"uj_options": "OK",
+			"assert_result":false,
+			"policy_data": {
+				"app_or_category": "app_instance",
+				"apps": [],
+				"app_instance": ["Box: netskopedemodeepak", "Box: testnamma"],
+				"dlp_profile": ["DLP-PCI"],
+				"tss_profile": [],
+				"activities": [{
+					"activity": "Create",
+					"list_of_constraints": [{
+						"constraints_type": "to_user",
+						"constraints_profile": "4"
+					}, {
+						"constraints_type": "from_user",
+						"constraints_profile": "2"
+					}]
+				}],
+				"access_method": [],
+				"file_types": [],
+				"file_size": null,
+				"action": {
+					"action_name": "block",
+					"template": "block_page.html"
+				}
+			}
+		},
+		{
+			"testrail_id": "123456",
+			"test_name": "Login- Non-SSO Block (Instance, From user)", 
+			"tags": ["smoke"],
+			"test_method": {
+				"name": "successful_login",
+				"args": []
+			},
+			"object_type": "User",
+			"uj_options": "OK",
+			"assert_result":false,
+			"policy_data": {
+				"app_or_category": "app_instance",
+				"apps": [],
+				"app_instance": ["Box: netskopedemodeepak"],
+				"dlp_profile": [],
+				"tss_profile": [],
+				"activities": ["Login Successful"],
+				"access_method": ["Client"],
+				"file_types": [],
+				"file_size": null,
+				"action": {
+					"action_name": "block",
+					"template": "block_page.html"
+				}
+			}
+		}
+	]
+}
+
+aaa
